@@ -560,8 +560,8 @@ require([
                             "NOMB_MPIO": x.attributes.NOMB_MPIO,
                             "NOM_DEP": x.attributes.NOM_DEP,
                             "COD_DPTO ": x.attributes.COD_DPTO,
-                            "Shape.STArea": x.attributes["Shape.STArea()"],
-                            "Shape.STLength": x.attributes["Shape.STLength()"]
+                            "ShapeArea": x.attributes["Shape.STArea()"],
+                            "ShapeLength": x.attributes["Shape.STLength()"]
                         });
                     });
                 }
@@ -747,8 +747,8 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
                 { data: 'NOMBRE_VER' },
                 { data: 'NOM_DEP' },
                 { data: 'NOMB_MPIO' },
-                { data: 'Shape.STArea' },
-                { data: 'Shape.STLength' }
+                { data: 'ShapeTArea' },
+                { data: 'ShapeTLength' }
             ]
         }
     );
