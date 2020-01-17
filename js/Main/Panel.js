@@ -9,8 +9,26 @@ function getPersons(id = 0, initial = 0) {
         headers: {'Authorization': 'Bearer '+user.token},
         success :function (data) {
 
-            var string = "";
 
+            data.forEach(x=> {
+                x.user = x.user.state;
+            });
+
+            $('#UserTable').DataTable( {
+                data: data,
+                columns: [
+                    { data: 'id' },
+                    { data: 'firstname' },
+                    { data: 'secondname' },
+                    { data: 'first_lastname' },
+                    { data: 'firstname' },
+                    { data: 'second_lastname' },
+                    { data: 'first_lastname' },
+                    { data: 'user' }
+                ]
+            } );
+
+            
             if(initial == 0){
                 createPaginate(data.length);
             }else{
@@ -106,7 +124,9 @@ require([
         UserDialog = new Dialog({
             title: "Usuarios",
             style: "width: 100%; height : 100%",
-            content : "<div class=\"container\">\n" +
+            content: "<table class=\"table\" id=\"UserTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\"></table>" /* "<div class=\"container\">\n" +
+
+            //content : /*"<div class=\"container\">\n" +
                 "    <h2>Usuarios</h2>\n" +
                 "    <p>Visualizacion de usuarios</p>\n" +
                 "    <table class=\"table\" id=\"UserTable\">\n" +
@@ -133,7 +153,7 @@ require([
                 "            <a href=\"#\" id=\"after\">&raquo;</a>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
-                "</div>",
+                "</div>",*/
 
         });
 
