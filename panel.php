@@ -50,6 +50,8 @@
 <script src="js/Main/Panel.js"></script>
 <script>
 
+    url = "http://"+"<?php echo $_SERVER['SERVER_ADDR']; ?>"+":44344/";
+
     var position = 0;
 
     if(localStorage.user != null) {

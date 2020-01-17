@@ -91,6 +91,8 @@
     <script>
 
 
+        url = "http://"+"<?php echo $_SERVER['SERVER_ADDR']; ?>"+":44344/";
+
        $(document).ready(function () {
 
          if(localStorage.user != null){
