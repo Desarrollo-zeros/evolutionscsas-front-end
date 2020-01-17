@@ -643,9 +643,9 @@ require([
                 "    <div class=\"left\">\n" +
                 "        <br>\n" +
                 "        <div class=\"pagination\">\n" +
-                "            <a href=\"#\" id=\"before\">&laquo;</a>\n" +
+                "            <a href=\"#\" id=\"before1\">&laquo;</a>\n" +
                 "            <i id=></i>\n" +
-                "            <a href=\"#\" id=\"after\">&raquo;</a>\n" +
+                "            <a href=\"#\" id=\"after1\">&raquo;</a>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</div>",
@@ -691,7 +691,7 @@ require([
                     deptDialog.show();
                     getVeredas(position, 0);
 
-                    $("#after").click(function () {
+                    $("#after1").click(function () {
                         mapView.extent = extent;
                         if (tam > position) {
                             position++;
@@ -701,7 +701,7 @@ require([
                         }
                     });
 
-                    $("#before").click(function () {
+                    $("#before1").click(function () {
                         if (position > 1) {
                             position--;
                             getVeredas(position, 1);
