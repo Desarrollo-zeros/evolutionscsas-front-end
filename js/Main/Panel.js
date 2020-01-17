@@ -566,6 +566,7 @@ require([
                     });
                 }
                 mapView.extent = results.features[0].geometry.extent;
+                $.notify("Veredas cargadas");
             });
             map.add(VerColLayer);
         };
@@ -747,8 +748,8 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
                 { data: 'NOMBRE_VER' },
                 { data: 'NOM_DEP' },
                 { data: 'NOMB_MPIO' },
-                { data: 'ShapeTArea' },
-                { data: 'ShapeTLength' }
+                { data: 'ShapeArea' },
+                { data: 'ShapeLength' }
             ]
         }
     );
