@@ -246,13 +246,13 @@ require([
                     mapView.on("click", function (event) {
                         if (mapView.popup.visible && stateMap) {
                             mapView.popup.visible = false;
-                            mapView.extent = extent;
+                            //mapView.extent = extent;
                             stateMap = false;
                         }
                     });
 
 
-                    extent = mapView.extent;
+                    //extent = mapView.extent;
                     if (depColLayer) {
                         document.getElementById("loading").style = "display: block";
                         setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 5000);
@@ -273,10 +273,9 @@ require([
                                     stateMap = true;
                                     mapView.extent = response.features[0].geometry.extent;
                                     deptPopup.location = mapView.center.clone();
-                                    var popup = mapView.popup;
                                     response.features[0].popupTemplate = new PopupTemplate(deptPopup);
-                                    popup.features = [response.features[0]];
-                                    popup.visible = true;
+                                    mapView.popup.features = [response.features[0]];
+                                    mapView.popup.visible = true;
                                     //layer.renderer = renderer;
                                     //console.log(response.features)
                                 });
@@ -619,24 +618,25 @@ require([
                     setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 1000);
 
                     if (!$.fn.dataTable.isDataTable('#VeredasTable')) {
-                        for(var i in table){
+                        for (var i in table) {
                             table[i].action = "<span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span>";
                         }
+
+                        $('#VeredasTable').DataTable(
+                            {
+                                data: table,
+                                columns: [
+                                    {data: 'OBJECTID'},
+                                    {data: 'NOMBRE_VER'},
+                                    {data: 'NOM_DEP'},
+                                    {data: 'NOMB_MPIO'},
+                                    {data: 'ShapeArea'},
+                                    {data: 'ShapeLength'},
+                                    {data: 'action'},
+                                ]
+                            }
+                        );
                     }
-                    $('#VeredasTable').DataTable(
-                        {
-                            data : table,
-                            columns: [
-                                { data: 'OBJECTID' },
-                                { data: 'NOMBRE_VER' },
-                                { data: 'NOM_DEP' },
-                                { data: 'NOMB_MPIO' },
-                                { data: 'ShapeArea' },
-                                { data: 'ShapeLength' },
-                                { data: 'action' },
-                            ]
-                        }
-                    );
 
                     deptDialog.show();
 
