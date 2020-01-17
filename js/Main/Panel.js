@@ -621,6 +621,7 @@ require([
             title: "Veredas",
             style: "width: 100%; height : 100%",
             content: "<div class=\"container\">\n" +
+                "<br><input id=\"myInput\" type=\"search\" placeholder=\"Search..\"><br><br>"+
                 "    <h2>Veredas</h2>\n" +
                 "    <p>Visualizacion de Veredas</p>\n" +
                 "    <table class=\"table\" id=\"VeredasTable\">\n" +
@@ -740,6 +741,15 @@ function getVeredas(id = 1, initial = 0) {
     $("#TableVeredas").html(string);
 }
 
+
+$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#VeredasTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
 
 
 function Paginator(items, page, per_page) {
