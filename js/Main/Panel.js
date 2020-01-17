@@ -620,7 +620,7 @@ require([
         deptDialog = new Dialog({
             title: "Veredas",
             style: "width: 100%; height : 100%",
-            content: "<div class=\"container\">\n" +
+            content: "<table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\"></table>" /* "<div class=\"container\">\n" +
                 "    <h2>Veredas</h2>\n" +
                 "    <p>Visualizacion de Veredas</p>\n" +
                 "    <table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">\n" +
@@ -648,7 +648,7 @@ require([
                 "            <a href=\"#\" id=\"after1\">&raquo;</a>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
-                "</div>",
+                "</div>",*/
 
         });
 
@@ -741,7 +741,15 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
 
     $('#VeredasTable').DataTable(
         {
-            data : table
+            data : table,
+            columns: [
+                { data: 'OBJECTID' },
+                { data: 'NOMBRE_VER' },
+                { data: 'NOM_DEP' },
+                { data: 'NOMB_MPIO' },
+                { data: 'Shape.STArea' },
+                { data: 'Shape.STLength' }
+            ]
         }
     );
     $('.dataTables_length').addClass('bs-select');
