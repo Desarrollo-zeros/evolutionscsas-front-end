@@ -9,24 +9,19 @@ function getPersons(id = 0, initial = 0) {
         headers: {'Authorization': 'Bearer '+user.token},
         success :function (data) {
 
-
             for(var i in data){
                 data[i].user = state(data[i].user.state);
             }
 
-
             $('#UserTable').DataTable( {
                 data: data,
                 columns: [
-                    //{ data: 'id' },
+                    { data: 'id' },
                     { data: 'firstName' },
                     { data: 'firstLastName' },
                     { data: 'secondName' },
                     { data: 'secondLastName' },
                     { data: 'user' },
-                    {data : 'createdAt'},
-                    {data : 'updatedAt'},
-                    {data : 'userId'}
                 ]
             } );
 
