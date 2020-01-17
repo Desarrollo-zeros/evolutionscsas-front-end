@@ -18,15 +18,14 @@ function getPersons(id = 0, initial = 0) {
                 data: data,
                 columns: [
                     { data: 'id' },
-                    { data: 'firstname' },
-                    { data: 'secondname' },
-                    { data: 'first_lastname' },
-                    { data: 'firstname' },
-                    { data: 'second_lastname' },
-                    { data: 'first_lastname' },
+                    { data: 'firstName' },
+                    { data: 'secondName' },
+                    { data: 'firstLastName' },
+                    { data: 'secondLastName' },
                     { data: 'user' },
                     {data : 'createdAt'},
-                    {data : 'updatedAt'}
+                    {data : 'updatedAt'},
+                    {data : 'userId'}
                 ]
             } );
 
