@@ -549,6 +549,7 @@ require([
 
             };
             VerColLayer.queryFeatures(query).then(function (results) {
+                console.log("xxxxx"+results.features);
                 if (table.length === 0) {
                     results.features.forEach(x => {
                         table.push({
