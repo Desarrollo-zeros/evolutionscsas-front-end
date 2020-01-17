@@ -9,9 +9,9 @@ function getPersons(id = 0, initial = 0) {
         headers: {'Authorization': 'Bearer '+user.token},
         success :function (data) {
 
-
+            var i = 0;
             data.forEach(x=> {
-                x.user = x.user.state;
+                data[i].user = x.user.state;
             });
 
             $('#UserTable').DataTable( {
@@ -24,12 +24,14 @@ function getPersons(id = 0, initial = 0) {
                     { data: 'firstname' },
                     { data: 'second_lastname' },
                     { data: 'first_lastname' },
-                    { data: 'user' }
+                    { data: 'user' },
+                    {data : 'createdAt'},
+                    {data : 'updatedAt'}
                 ]
             } );
 
-            
-            if(initial == 0){
+
+            /*if(initial == 0){
                 createPaginate(data.length);
             }else{
                 position = id;
@@ -44,7 +46,7 @@ function getPersons(id = 0, initial = 0) {
                 string += state(data[i].user.state);
                 string += "</tr>";
             }
-            $("#tableUsers").html(string);
+            $("#tableUsers").html(string);*/
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
