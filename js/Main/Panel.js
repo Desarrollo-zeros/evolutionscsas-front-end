@@ -24,25 +24,6 @@ function getPersons(id = 0, initial = 0) {
                     { data: 'user' },
                 ]
             } );
-
-
-            /*if(initial == 0){
-                createPaginate(data.length);
-            }else{
-                position = id;
-            }
-            for(var i in data){
-                string += "<tr>";
-                string += "<td>"+data[i].id+"</td>";
-                string += "<td>"+data[i].firstName+"</td>";
-                string += "<td>"+data[i].firstLastName+"</td>";
-                string += "<td>"+data[i].secondName+"</td>";
-                string += "<td>"+data[i].secondLastName+"</td>";
-                string += state(data[i].user.state);
-                string += "</tr>";
-            }
-            $("#tableUsers").html(string);*/
-
         },
         error: function(jqXHR, textStatus, errorThrown) {
             $.notify("error, peticion no soportada");
@@ -76,8 +57,6 @@ var tam = 0,
     extent,
     stateMap = false,
     UserDialog;
-
-
 
 require([
         "esri/Map",
@@ -119,37 +98,7 @@ require([
                 "            <th>Estado</th>\n" +
                 "        </tr>\n" +
                 "        </thead>\n" +
-                "</table>" /* "<div class=\"container\">\n" +
-
-            //content : /*"<div class=\"container\">\n" +
-                "    <h2>Usuarios</h2>\n" +
-                "    <p>Visualizacion de usuarios</p>\n" +
-                "    <table class=\"table\" id=\"UserTable\">\n" +
-                "        <thead>\n" +
-                "        <tr>\n" +
-                "            <th scope=\"id\">#</th>\n" +
-                "            <th>Primer Nombre</th>\n" +
-                "            <th>Segundo Nombre</th>\n" +
-                "            <th>Primer Apellido</th>\n" +
-                "            <th>Segundo Apellido</th>\n" +
-                "            <th>Estado</th>\n" +
-                "        </tr>\n" +
-                "        </thead>\n" +
-                "        <tbody id=\"tableUsers\">\n" +
-                "\n" +
-                "        </tbody>\n" +
-                "    </table>\n" +
-                "\n" +
-                "    <div class=\"left\">\n" +
-                "        <br>\n" +
-                "        <div class=\"pagination\">\n" +
-                "            <a href=\"#\" id=\"before\">&laquo;</a>\n" +
-                "            <i id=\"btns\"></i>\n" +
-                "            <a href=\"#\" id=\"after\">&raquo;</a>\n" +
-                "        </div>\n" +
-                "    </div>\n" +
-                "</div>",*/
-
+                "</table>"
         });
 
         var verUserBtn = new Button({
@@ -157,27 +106,6 @@ require([
             onClick: function() {
                 UserDialog.show();
                 getPersons();
-
-                $("#after").click(function () {
-                    if(tam > position){
-                        position++;
-                        getPersons(position, 1);
-                        $(".paginateBtn").removeClass("active");
-                        $("#btn-"+position).addClass("active");
-                    }
-
-                });
-
-
-                $("#before").click(function () {
-                    if(position > 0){
-                        position--;
-                        getPersons(position, 1);
-                        $(".paginateBtn").removeClass("active");
-                        $("#btn-"+position).addClass("active");
-                    }
-                });
-
             },
             style: "position: absolute; top: 10px; right: 565px;"
         }, "btnUser").startup();
@@ -307,9 +235,6 @@ require([
             });
 
             sketchVM.on(["create"], function (event) {
-
-
-
 
                 if (event.state === "complete") {
                     map.remove(map.layers.find(x => x.type === "graphics"));
@@ -564,7 +489,6 @@ require([
 
             };
             VerColLayer.queryFeatures(query).then(function (results) {
-                console.log("xxxxx"+results.features);
                 if (table.length === 0) {
                     results.features.forEach(x => {
                         table.push({
@@ -648,35 +572,7 @@ require([
                 "            <th>Acciones</th>\n" +
                 "        </tr>\n" +
                 "        </thead>\n" +
-                "</table>" /* "<div class=\"container\">\n" +
-                "    <h2>Veredas</h2>\n" +
-                "    <p>Visualizacion de Veredas</p>\n" +
-                "    <table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">\n" +
-                "        <thead>\n" +
-                "        <tr>\n" +
-                "            <th scope=\"id\">#</th>\n" +
-                "            <th>Vereda</th>\n" +
-                "            <th>Departamento</th>\n" +
-                "            <th>Municipio</th>\n" +
-                "            <th>Shape.STArea</th>\n" +
-                "            <th>Shape.STLength</th>\n" +
-                "            <th>Acciones</th>\n" +
-                "        </tr>\n" +
-                "        </thead>\n" +
-                "        <tbody id=\"TableVeredas\">\n" +
-                "\n" +
-                "        </tbody>\n" +
-                "    </table>\n" +
-                "\n" +
-                "    <div class=\"left\">\n" +
-                "        <br>\n" +
-                "        <div class=\"pagination\">\n" +
-                "            <a href=\"#\" id=\"before1\">&laquo;</a>\n" +
-                "            <i id=></i>\n" +
-                "            <a href=\"#\" id=\"after1\">&raquo;</a>\n" +
-                "        </div>\n" +
-                "    </div>\n" +
-                "</div>",*/
+                "</table>",
 
         });
 
@@ -717,30 +613,28 @@ require([
                     document.getElementById("loading").style = "display: block";
                     setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 1000);
                     deptDialog.show();
-                    getVeredas(position, 0);
+                    for(var i in table){
+                        table[i].action = "<span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span>";
+                    }
 
-                    $("#after1").click(function () {
-                        mapView.extent = extent;
-                        if (tam > position) {
-                            position++;
-                            getVeredas(position, 1);
-                            $(".paginateBtn").removeClass("active");
-                            $("#btn-" + position).addClass("active");
+                    $('#VeredasTable').DataTable(
+                        {
+                            data : table,
+                            columns: [
+                                { data: 'OBJECTID' },
+                                { data: 'NOMBRE_VER' },
+                                { data: 'NOM_DEP' },
+                                { data: 'NOMB_MPIO' },
+                                { data: 'ShapeArea' },
+                                { data: 'ShapeLength' },
+                                { data: 'action' },
+                            ]
                         }
-                    });
-
-                    $("#before1").click(function () {
-                        if (position > 1) {
-                            position--;
-                            getVeredas(position, 1);
-                            $(".paginateBtn").removeClass("active");
-                            $("#btn-" + position).addClass("active");
-                        }
-                    });
+                    );
+                    $('.dataTables_length').addClass('bs-select');
                 }else{
                     $.notify("Debes cargar las veredas primero");
                 }
-
 
             },
             style: "position: absolute; top: 10px; right: 20px;"
@@ -748,78 +642,6 @@ require([
 
     });
 
-function getVeredas(id = 1, initial = 0, numeberPage = 10) {
-    //var data = Paginator(table, id, table.length).data;
-    /*if (initial == 0) {
-        tam = table.length/10;
-    }
-    var string = "";
-    for (var i in table) {
-        string += "<tr>";
-        string += "<td>" + table[i].OBJECTID + "</td>";
-        string += "<td>" + table[i].NOMBRE_VER + "</td>";
-        string += "<td>" + table[i].NOM_DEP + "</td>";
-        string += "<td>" + table[i].NOMB_MPIO + "</td>";
-        string += "<td>" + table[i]["Shape.STArea"] + "</td>";
-        string += "<td>" + table[i]["Shape.STLength"] + "</td>";
-        string += "<td><span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span></td>";
-        string += "</tr>";
-    }*/
-    //$("#TableVeredas").html(string);
-
-
-    for(var i in table){
-        table[i].action = "<span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span>";
-    }
-
-    $('#VeredasTable').DataTable(
-        {
-
-            data : table,
-            columns: [
-                { data: 'OBJECTID' },
-                { data: 'NOMBRE_VER' },
-                { data: 'NOM_DEP' },
-                { data: 'NOMB_MPIO' },
-                { data: 'ShapeArea' },
-                { data: 'ShapeLength' },
-                { data: 'action' },
-            ]
-        }
-    );
-    $('.dataTables_length').addClass('bs-select');
-}
-
-
-$(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-        getVeredas(1,1,0);
-        var value = $(this).val().toLowerCase();
-        $("#VeredasTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-});
-
-
-function Paginator(items, page, per_page) {
-
-    var page = page || 1,
-        per_page = per_page || 10,
-        offset = (page - 1) * per_page,
-
-        paginatedItems = items.slice(offset).slice(0, per_page),
-        total_pages = Math.ceil(items.length / per_page);
-    return {
-        page: page,
-        per_page: per_page,
-        pre_page: page - 1 ? page - 1 : null,
-        next_page: (total_pages > page) ? page + 1 : null,
-        total: items.length,
-        total_pages: total_pages,
-        data: paginatedItems
-    };
-}
 
 document.getElementById("loading").style = "display: block";
 setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 10000);
