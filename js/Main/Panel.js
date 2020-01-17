@@ -13,17 +13,22 @@ function getPersons(id = 0, initial = 0) {
                 data[i].user = state(data[i].user.state);
             }
 
-            $('#UserTable').DataTable( {
-                data: data,
-                columns: [
-                    { data: 'id' },
-                    { data: 'firstName' },
-                    { data: 'firstLastName' },
-                    { data: 'secondName' },
-                    { data: 'secondLastName' },
-                    { data: 'user' },
-                ]
-            } );
+
+            if (!$.fn.dataTable.isDataTable('#UserTable')) {
+                $('#UserTable').DataTable( {
+                    data: data,
+                    columns: [
+                        { data: 'id' },
+                        { data: 'firstName' },
+                        { data: 'firstLastName' },
+                        { data: 'secondName' },
+                        { data: 'secondLastName' },
+                        { data: 'user' },
+                    ]
+                } );
+            }
+
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             $.notify("error, peticion no soportada");
@@ -612,11 +617,12 @@ require([
                 if(table.length > 0){
                     document.getElementById("loading").style = "display: block";
                     setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 1000);
-                    deptDialog.show();
-                    for(var i in table){
-                        table[i].action = "<span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span>";
-                    }
 
+                    if (!$.fn.dataTable.isDataTable('#VeredasTable')) {
+                        for(var i in table){
+                            table[i].action = "<span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span>";
+                        }
+                    }
                     $('#VeredasTable').DataTable(
                         {
                             data : table,
@@ -631,6 +637,10 @@ require([
                             ]
                         }
                     );
+
+                    deptDialog.show();
+
+
                     $('.dataTables_length').addClass('bs-select');
                 }else{
                     $.notify("Debes cargar las veredas primero");
