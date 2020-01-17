@@ -539,11 +539,30 @@ require([
                 labelingInfo: [nomColLabel],
                 //definitionExpression: "NOM_DEP = 'Cesar'",
                 popupTemplate: verPopup,
+            }).then(function (results) {
+
+                if (table.length === 0) {
+                    results.features.forEach(x => {
+                        table.push({
+                            "OBJECTID": x.attributes.OBJECTID,
+                            "DPTOMPIO": x.attributes.DPTOMPIO,
+                            "NOMBRE_VER": x.attributes.NOMBRE_VER,
+                            "FUENTE": x.attributes.FUENTE,
+                            "NOMB_MPIO": x.attributes.NOMB_MPIO,
+                            "NOM_DEP": x.attributes.NOM_DEP,
+                            "COD_DPTO ": x.attributes.COD_DPTO,
+                            "Shape.STArea": x.attributes["Shape.STArea()"],
+                            "Shape.STLength": x.attributes["Shape.STLength()"]
+                        });
+                    });
+                }
+                mapView.extent = results.features[0].geometry.extent;
+
             });
 
-
-            /*const query = { // autocasts as Query
-                where: "1 = '1'",
+            /*
+            const query = { // autocasts as Query
+                where: "1=1",
                 returnGeometry: false,
                 outFields: ["*"],//["OBJECTID","DPTOMPIO", "NOMBRE_VER", "FUENTE", "NOMB_MPIO", "NOM_DEP", "COD_DPTO"],
 
