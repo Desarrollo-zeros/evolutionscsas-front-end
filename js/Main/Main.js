@@ -1,4 +1,4 @@
-var url = 'https://localhost:44344/';
+var url = 'https://142.93.117.217:44344/';
 
 
 function  auth(path) {
