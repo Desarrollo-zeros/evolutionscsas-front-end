@@ -125,7 +125,7 @@
                 return false;
               }
               localStorage.user = JSON.stringify(data);
-              window.location.href = "./panel.html";
+              window.location.href = "./panel.php";
             },
             error: function(jqXHR, textStatus, errorThrown) {
               $.notify("User y/o Password invalid");
