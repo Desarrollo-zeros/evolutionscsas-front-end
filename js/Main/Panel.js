@@ -739,7 +739,7 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
     }
     $("#TableVeredas").html(string);
 
-    $('#dtBasicExample').DataTable();
+    $('#VeredasTable').DataTable();
     $('.dataTables_length').addClass('bs-select');
 }
 

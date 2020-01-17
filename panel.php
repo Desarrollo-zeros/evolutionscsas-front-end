@@ -11,9 +11,7 @@
           href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css">
     <link rel="stylesheet" href="css/custom.css">
-
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     <style>
     </style>
@@ -47,6 +45,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
 
+<script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
 <script src="js/Main/Main.js"></script>
 <script src="js/notify.js"></script>
