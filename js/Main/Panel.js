@@ -11,7 +11,7 @@ function getPersons(id = 0, initial = 0) {
 
 
             for(var i in data){
-                data[i].user = state(x.user.state);
+                data[i].user = state(data[i].user.state);
             }
 
 
