@@ -621,7 +621,6 @@ require([
             title: "Veredas",
             style: "width: 100%; height : 100%",
             content: "<div class=\"container\">\n" +
-                "<br><input id=\"myInput\" type=\"search\" placeholder=\"Search..\"><br><br>"+
                 "    <h2>Veredas</h2>\n" +
                 "    <p>Visualizacion de Veredas</p>\n" +
                 "    <table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">\n" +
@@ -729,13 +728,13 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
     var string = "";
     for (var i in table) {
         string += "<tr>";
-        string += "<td>" + data[i].OBJECTID + "</td>";
-        string += "<td>" + data[i].NOMBRE_VER + "</td>";
-        string += "<td>" + data[i].NOM_DEP + "</td>";
-        string += "<td>" + data[i].NOMB_MPIO + "</td>";
-        string += "<td>" + data[i]["Shape.STArea"] + "</td>";
-        string += "<td>" + data[i]["Shape.STLength"] + "</td>";
-        string += "<td><span onclick='return global.verVereda(" + JSON.stringify(data[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span></td>";
+        string += "<td>" + table[i].OBJECTID + "</td>";
+        string += "<td>" + table[i].NOMBRE_VER + "</td>";
+        string += "<td>" + table[i].NOM_DEP + "</td>";
+        string += "<td>" + table[i].NOMB_MPIO + "</td>";
+        string += "<td>" + table[i]["Shape.STArea"] + "</td>";
+        string += "<td>" + table[i]["Shape.STLength"] + "</td>";
+        string += "<td><span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span></td>";
         string += "</tr>";
     }
     $("#TableVeredas").html(string);

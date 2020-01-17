@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css">
     <link rel="stylesheet" href="css/custom.css">
 
-    <!-- Font Awesome -->
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
 
