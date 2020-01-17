@@ -310,7 +310,7 @@ require([
                     extent = mapView.extent;
                     if (depColLayer) {
                         document.getElementById("loading").style = "display: block";
-                        setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 10000);
+                        setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 5000);
                         var query = depColLayer.createQuery();
                         query.geometry = event.graphic.geometry;
                         query.distance = 2;
@@ -537,13 +537,13 @@ require([
                 outFields: ["*"],//["OBJECTID","DPTOMPIO", "NOMBRE_VER", "FUENTE", "NOMB_MPIO", "NOM_DEP", "COD_DPTO"],
                 opacity: .4,
                 labelingInfo: [nomColLabel],
-                definitionExpression: "NOM_DEP = 'Cesar'",
+                //definitionExpression: "NOM_DEP = 'Cesar'",
                 popupTemplate: verPopup,
             });
 
 
             const query = { // autocasts as Query
-                where: "NOM_DEP = 'Cesar'",
+                //where: "NOM_DEP = 'Cesar'",
                 returnGeometry: false,
                 outFields: ["*"],//["OBJECTID","DPTOMPIO", "NOMBRE_VER", "FUENTE", "NOMB_MPIO", "NOM_DEP", "COD_DPTO"],
 
@@ -613,7 +613,7 @@ require([
             }).then(function (results) {
                 mapView.extent = results.features[0].geometry.extent;
                 document.getElementById("loading").style = "display: block";
-                setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 10000);
+                setTimeout(function(){ document.getElementById("loading").style = "display: none"; }, 5000);
             });
 
         };
