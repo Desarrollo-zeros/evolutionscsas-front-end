@@ -624,7 +624,7 @@ require([
                 "<br><input id=\"myInput\" type=\"search\" placeholder=\"Search..\"><br><br>"+
                 "    <h2>Veredas</h2>\n" +
                 "    <p>Visualizacion de Veredas</p>\n" +
-                "    <table class=\"table\" id=\"VeredasTable\">\n" +
+                "    <table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">\n" +
                 "        <thead>\n" +
                 "        <tr>\n" +
                 "            <th scope=\"id\">#</th>\n" +
@@ -721,13 +721,13 @@ require([
 
     });
 
-function getVeredas(id = 1, initial = 0) {
-    var data = Paginator(table, id, 10).data;
+function getVeredas(id = 1, initial = 0, numeberPage = 10) {
+    //var data = Paginator(table, id, table.length).data;
     if (initial == 0) {
         tam = table.length/10;
     }
     var string = "";
-    for (var i in data) {
+    for (var i in table) {
         string += "<tr>";
         string += "<td>" + data[i].OBJECTID + "</td>";
         string += "<td>" + data[i].NOMBRE_VER + "</td>";
@@ -739,11 +739,15 @@ function getVeredas(id = 1, initial = 0) {
         string += "</tr>";
     }
     $("#TableVeredas").html(string);
+
+    $('#dtBasicExample').DataTable();
+    $('.dataTables_length').addClass('bs-select');
 }
 
 
 $(document).ready(function(){
     $("#myInput").on("keyup", function() {
+        getVeredas(1,1,0);
         var value = $(this).val().toLowerCase();
         $("#VeredasTable tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
