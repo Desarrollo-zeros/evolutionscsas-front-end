@@ -11,7 +11,8 @@ function getPersons(id = 0, initial = 0) {
 
             var i = 0;
             data.forEach(x=> {
-                data[i].user = x.user.state;
+                data[i].user = state(x.user.state);
+                i++;
             });
 
             $('#UserTable').DataTable( {
@@ -19,8 +20,8 @@ function getPersons(id = 0, initial = 0) {
                 columns: [
                     { data: 'id' },
                     { data: 'firstName' },
-                    { data: 'secondName' },
                     { data: 'firstLastName' },
+                    { data: 'secondName' },
                     { data: 'secondLastName' },
                     { data: 'user' },
                     {data : 'createdAt'},
@@ -61,19 +62,6 @@ function state(state) {
     return "<td style='color : #fe0000'>Inactivo</td>";
 }
 
-function createPaginate(size) {
-    tam = size/10;
-    var string = "";
-    for(var i = 0; i<= tam; i++){
-        if(i == 0){
-            string += '<a  href="#" id="btn-'+i+'" class="paginateBtn active" onclick="$(\'.paginateBtn\').removeClass(\'active\');getPersons('+i+',1);$(\'#btn-'+i+'\').addClass(\'active\');">'+(i+1)+'</a>';
-
-        }else{
-            string += '<a  href="#" id="btn-'+i+'" class="paginateBtn" onclick="$(\'.paginateBtn\').removeClass(\'active\');getPersons('+i+',1);$(\'#btn-'+i+'\').addClass(\'active\');">'+(i+1)+'</a>';
-        }
-    }
-    $("#btns").html(string);
-}
 
 
 
@@ -125,7 +113,18 @@ require([
         UserDialog = new Dialog({
             title: "Usuarios",
             style: "width: 100%; height : 100%",
-            content: "<table class=\"table\" id=\"UserTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\"></table>" /* "<div class=\"container\">\n" +
+            content: "<table class=\"table\" id=\"UserTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">" +
+                "        <thead>\n" +
+                "        <tr>\n" +
+                "            <th scope=\"id\">#</th>\n" +
+                "            <th>Primer Nombre</th>\n" +
+                "            <th>Segundo Nombre</th>\n" +
+                "            <th>Primer Apellido</th>\n" +
+                "            <th>Segundo Apellido</th>\n" +
+                "            <th>Estado</th>\n" +
+                "        </tr>\n" +
+                "        </thead>\n" +
+                "</table>" /* "<div class=\"container\">\n" +
 
             //content : /*"<div class=\"container\">\n" +
                 "    <h2>Usuarios</h2>\n" +
@@ -642,7 +641,19 @@ require([
         deptDialog = new Dialog({
             title: "Veredas",
             style: "width: 100%; height : 100%",
-            content: "<table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\"></table>" /* "<div class=\"container\">\n" +
+            content: "<table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">" +
+                "        <thead>\n" +
+                "        <tr>\n" +
+                "            <th scope=\"id\">#</th>\n" +
+                "            <th>Vereda</th>\n" +
+                "            <th>Departamento</th>\n" +
+                "            <th>Municipio</th>\n" +
+                "            <th>Shape.STArea</th>\n" +
+                "            <th>Shape.STLength</th>\n" +
+                "            <th>Acciones</th>\n" +
+                "        </tr>\n" +
+                "        </thead>\n" +
+                "</table>" /* "<div class=\"container\">\n" +
                 "    <h2>Veredas</h2>\n" +
                 "    <p>Visualizacion de Veredas</p>\n" +
                 "    <table class=\"table\" id=\"VeredasTable\" class=\"table table-striped table-bordered table-sm\" cellspacing=\"0\" width=\"100%\">\n" +
