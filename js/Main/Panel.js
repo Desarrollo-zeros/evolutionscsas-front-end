@@ -542,7 +542,7 @@ require([
             });
 
 
-            const query = { // autocasts as Query
+            /*const query = { // autocasts as Query
                 where: "1 = '1'",
                 returnGeometry: false,
                 outFields: ["*"],//["OBJECTID","DPTOMPIO", "NOMBRE_VER", "FUENTE", "NOMB_MPIO", "NOM_DEP", "COD_DPTO"],
@@ -566,7 +566,7 @@ require([
                     });
                 }
                 mapView.extent = results.features[0].geometry.extent;
-            });
+            });*/
             map.add(VerColLayer);
 
 
