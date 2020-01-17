@@ -722,7 +722,7 @@ require([
 
 function getVeredas(id = 1, initial = 0, numeberPage = 10) {
     //var data = Paginator(table, id, table.length).data;
-    if (initial == 0) {
+    /*if (initial == 0) {
         tam = table.length/10;
     }
     var string = "";
@@ -736,10 +736,14 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
         string += "<td>" + table[i]["Shape.STLength"] + "</td>";
         string += "<td><span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span></td>";
         string += "</tr>";
-    }
-    $("#TableVeredas").html(string);
+    }*/
+    //$("#TableVeredas").html(string);
 
-    $('#VeredasTable').DataTable();
+    $('#VeredasTable').DataTable(
+        {
+            data : table
+        }
+    );
     $('.dataTables_length').addClass('bs-select');
 }
 
