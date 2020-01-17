@@ -543,7 +543,7 @@ require([
 
 
             const query = { // autocasts as Query
-                //where: "NOM_DEP = 'Cesar'",
+                where: "1 = '1'",
                 returnGeometry: false,
                 outFields: ["*"],//["OBJECTID","DPTOMPIO", "NOMBRE_VER", "FUENTE", "NOMB_MPIO", "NOM_DEP", "COD_DPTO"],
 
