@@ -9,16 +9,16 @@ function getPersons(id = 0, initial = 0) {
         headers: {'Authorization': 'Bearer '+user.token},
         success :function (data) {
 
-            var i = 0;
-            data.forEach(x=> {
+
+            for(var i in data){
                 data[i].user = state(x.user.state);
-                i++;
-            });
+            }
+
 
             $('#UserTable').DataTable( {
                 data: data,
                 columns: [
-                    { data: 'id' },
+                    //{ data: 'id' },
                     { data: 'firstName' },
                     { data: 'firstLastName' },
                     { data: 'secondName' },
@@ -772,8 +772,14 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
     }*/
     //$("#TableVeredas").html(string);
 
+
+    for(var i in table){
+        table[i].action = "<span onclick='return global.verVereda(" + JSON.stringify(table[i].NOMBRE_VER) + ")' data-tooltip=\"Presiona click para realizar zoom en el mapa para la vereda seleccionada.\" data-tooltip-position=\"left\"><i class='fa fa-search' title='Presiona click para realizar zoom en el mapa para la vereda seleccionada.'></i></span>";
+    }
+
     $('#VeredasTable').DataTable(
         {
+
             data : table,
             columns: [
                 { data: 'OBJECTID' },
@@ -781,7 +787,8 @@ function getVeredas(id = 1, initial = 0, numeberPage = 10) {
                 { data: 'NOM_DEP' },
                 { data: 'NOMB_MPIO' },
                 { data: 'ShapeArea' },
-                { data: 'ShapeLength' }
+                { data: 'ShapeLength' },
+                { data: 'action' },
             ]
         }
     );
